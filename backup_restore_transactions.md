@@ -1,12 +1,17 @@
-1 -Se utiliza el comando pg_dump -h 127.0.0.1 -U ua_eq017 -d ua_eq017 -f respaldo_bd.sql para generar el respaldo.
-2- se adjunta contraseña para confirmar. 
-3- se verifica con el comando ls 
-4- se intenta crear un clon de la base de datos con createdb -h 127.0.0.1 -U ua_eq017 ua_eq017_clon pero no existen permisos.
+paso 1- comectarse por ssh
+ssh ua_eq017@143.198.118.203
 
+paso 2: Generar el archivo de respaldo
+pg_dump -U ua_eq017 -d ua_eq017 -F c -b -v -f respaldo_remoto.backup
 
+paso 3: salir 
+exit
 
+paso 4: descargar el archivo a tu pc y autorizar con contraseña.
+scp ua_eq017@143.198.118.203:respaldo_remoto.backup "C:\Users\javie\OneDrive\Documentos\respaldo_remoto.backup"
 
-<img width="1161" height="804" alt="Captura de pantalla 2026-08-20 112923" src="https://github.com/user-attachments/assets/97cdcc6e-bf4a-4d45-8e30-334b60bff990" />
+<img width="1508" height="1119" alt="imagen" src="https://github.com/user-attachments/assets/6998c805-37f8-4fb9-9cb7-31fdf92c3c6e" />
+
 
 (Paso 11)
 - como seguir trabajando - (paso 11 y 12)
