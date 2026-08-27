@@ -14,19 +14,33 @@ scp ua_eq017@143.198.118.203:respaldo_remoto.backup "C:\Users\javie\OneDrive\Doc
 
 
 (Paso 11)
-- como seguir trabajando - (paso 11 y 12)
+Conexión al servidor remoto
+ssh ua_eq017@143.198.118.203
 
-1- Crea la base de datos clon:
-  createdb -h 127.0.0.1 -U ua_eq017 ua_eq017_clon
-
-2- Restaura el respaldo:
-  psql -h 127.0.0.1 -U ua_eq017 -d ua_eq017_clon -f respaldo_bd.sql
-
-3- Entra a la nueva base para verificar:
-    psql -h 127.0.0.1 -U ua_eq017 -d ua_eq017_clon
-  
+<img width="691" height="593" alt="imagen" src="https://github.com/user-attachments/assets/c33b00a4-ddcb-42d7-9100-d189a67514b6" />
 
 
+Verificar que el archivo de respaldo esté disponible
+ls
+
+<img width="962" height="58" alt="imagen" src="https://github.com/user-attachments/assets/71fe6212-ab2b-4db7-9ed6-2e47ea2c7b0b" />
+
+ Crear la base de datos clon (vacía)
+createdb -h 127.0.0.1 -U ua_eq017 ua_eq017_clon
+
+<img width="744" height="34" alt="imagen" src="https://github.com/user-attachments/assets/20b022d5-c728-4bb0-b9f7-3465f1c29b1f" />
+
+Restaurar el respaldo (formato custom de pg_dump) dentro de la base clon
+pg_restore -h 127.0.0.1 -U ua_eq017 -d ua_eq017_clon respaldo_remoto.backup
+
+<img width="947" height="138" alt="imagen" src="https://github.com/user-attachments/assets/4becfef0-4897-4cc0-845e-4e77975272dc" />
+
+Conectarse a la base clon para verificar la restauración
+
+psql -h 127.0.0.1 -U ua_eq017 -d ua_eq017_clon
+\dt ua_eq017.*
+
+<img width="896" height="446" alt="imagen" src="https://github.com/user-attachments/assets/531273fb-a554-479f-bbbb-f72ec6cf96ee" />
 
 
 (Paso 12)
