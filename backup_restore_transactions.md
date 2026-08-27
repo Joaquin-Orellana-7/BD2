@@ -1,3 +1,4 @@
+BACKUP (PASO 10)
 paso 1- comectarse por ssh
 ssh ua_eq017@143.198.118.203
 
