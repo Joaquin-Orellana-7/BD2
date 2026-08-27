@@ -1,5 +1,7 @@
 Datos del equipo
 
+nombre equipo: ua_eq017
+
 seccion: Base de Datos 2 -P04
 
 Integrantes:
