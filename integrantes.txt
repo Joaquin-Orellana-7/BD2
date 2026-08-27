@@ -1,0 +1,11 @@
+Datos del equipo
+
+seccion: Base de Datos 2 -P04
+
+Integrantes:
+
+1.Joaquin Orellana 
+2.Valentina Arcas
+3.Francisco Lopez
+4.Ricardo Castro
+5.Nicolas Olguin
