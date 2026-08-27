@@ -6,8 +6,8 @@ seccion: Base de Datos 2 -P04
 
 Integrantes:
 
-1.Joaquin Orellana 
-2.Valentina Arcas
-3.Francisco Lopez
-4.Ricardo Castro
-5.Nicolas Olguin
+1.Ricardo Castro - Scrum Master
+2.Valentina Arcas - Develover
+3.Francisco Lopez - Develover
+2.Joaquin Orellana - Develover
+5.Nicolas Olguin - Develover
