@@ -44,18 +44,32 @@ psql -h 127.0.0.1 -U ua_eq017 -d ua_eq017_clon
 
 
 (Paso 12)
-- BEGIN;
+-- Iniciamos la transacción
+BEGIN;
 
--- 1. Registrar la nueva orden 
-INSERT INTO ordenes_pedido (id_orden, fecha, id_cliente) 
-VALUES (999, CURRENT_DATE, 1);
+-- 1. Registrar la nueva orden de pedido
+INSERT INTO ua_eq017.ordenes_pedido (id_orden, id_cliente, fecha_orden, estado, total, prioridad, observaciones)
+VALUES (51, 1, CURRENT_DATE, 'Pendiente', 7500.00, 'Alta', 'Orden de prueba - transaccion paso 12');
 
--- 2. Registrar el detalle de esa orden 
-INSERT INTO detalle_orden (id_detalle, id_orden, id_producto, cantidad) 
-VALUES (888, 999, 1, 5);
+-- 2. Registrar el detalle de esa orden (qué producto y cuánta cantidad)
+INSERT INTO ua_eq017.detalle_orden (id_detalle, id_orden, id_producto, cantidad, precio_unitario, subtotal)
+VALUES (50, 51, 2, 5, 1500.00, 7500.00);
 
--- 3. Registrar el envío 
-INSERT INTO envios (id_envio, id_orden, direccion, estado) 
-VALUES (777, 999, 'Direccion de prueba 123', 'Pendiente');
+-- 3. Registrar el envío asociado a la orden
+-- (fecha_entrega se deja sin valor porque el envío está "En preparación" y aún no tiene fecha confirmada)
+INSERT INTO ua_eq017.envios (id_envio, id_orden, id_transportista, id_empleado, fecha_envio, estado_envio, destino, costo_envio)
+VALUES (51, 51, 1, 1, CURRENT_DATE, 'En preparación', 'Av. Principal 123, Santiago', 3500.00);
+
+-- Confirmamos todos los cambios de forma permanente
+COMMIT;
+
+-- Verificación: unimos las tres tablas para confirmar que la orden, el detalle
+-- y el envío quedaron correctamente relacionados entre sí
+SELECT o.id_orden, o.total, o.estado, d.id_producto, d.cantidad, d.subtotal, e.estado_envio, e.destino
+FROM ua_eq017.ordenes_pedido o
+JOIN ua_eq017.detalle_orden d ON d.id_orden = o.id_orden
+JOIN ua_eq017.envios e ON e.id_orden = o.id_orden
+WHERE o.id_orden = 51;
 
 COMMIT;
+<img width="1091" height="523" alt="imagen" src="https://github.com/user-attachments/assets/6e5d14c3-08d8-450f-85d6-60707ec278d3" />
